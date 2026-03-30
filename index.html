@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn C Through Games</title>
+    <style>
+        /* CSS Variables for easy color changes */
+        :root {
+            --bg-color: #0f172a;       /* Deep dark blue/gray */
+            --card-bg: #1e293b;        /* Lighter dark shade for boxes */
+            --text-main: #f8fafc;      /* Off-white for readability */
+            --text-muted: #94a3b8;     /* Gray for secondary text */
+            --neon-cyan: #22d3ee;      /* Tech/Hacker vibe */
+            --neon-orange: #f97316;    /* Gaming/Action vibe */
+        }
+
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid #333;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--neon-cyan);
+            letter-spacing: 1px;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-orange);
+        }
+
+        /* Hero Section (The Hook) */
+        .hero {
+            text-align: center;
+            padding: 120px 20px;
+            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: var(--neon-orange);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 35px auto;
+        }
+
+        /* Buttons */
+        .cta-btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background-color: var(--neon-orange);
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            text-transform: uppercase;
+            box-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(249, 115, 22, 0.6);
+        }
+
+        /* Games Section */
+        .games {
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .games h2 {
+            font-size: 2.5rem;
+            color: var(--neon-cyan);
+            margin-bottom: 40px;
+        }
+
+        .card-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .game-card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            width: 320px;
+            text-align: left;
+            border-top: 4px solid var(--neon-cyan);
+            transition: transform 0.3s;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .game-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .game-card p {
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #334155;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: var(--neon-cyan);
+            font-weight: bold;
+        }
+
+        /* Code Proof Section */
+        .code-proof {
+            background-color: #000;
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .code-proof h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .code-box {
+            background-color: #1e1e1e;
+            color: #4ade80; /* Hacker green */
+            padding: 25px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.2rem;
+            display: inline-block;
+            text-align: left;
+            border-left: 5px solid var(--neon-orange);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .comment {
+            color: #6b7280;
+        }
+
+        /* Footer / Email Capture */
+        footer {
+            background-color: var(--card-bg);
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+
+        footer h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--neon-cyan);
+        }
+
+        .email-form {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .email-form input {
+            padding: 15px;
+            width: 300px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            font-size: 1rem;
+        }
+
+        .email-form button {
+            padding: 15px 25px;
+            background-color: var(--neon-cyan);
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .email-form button:hover {
+            background-color: #fff;
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Code/Games</div>
+        <div class="nav-links">
+            <a href="#">Learn C</a>
+            <a href="#">Games</a>
+            <a href="#">Practice</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Learn C Programming <br>Through <span>Your Favorite Games</span></h1>
+        <p>No boring math. No dry theory. Learn how the systems behind Resident Evil, Elden Ring, and Detroit: Become Human are actually built in code.</p>
+        <a href="#start" class="cta-btn">Start Learning Now</a>
+    </section>
+
+    <section class="games" id="start">
+        <h2>Games You'll Deconstruct</h2>
+        <div class="card-grid">
+            <div class="game-card">
+                <h3>Resident Evil 4</h3>
+                <p>Learn how variables, loops, and conditions create enemy AI, inventory sorting, and weapon mechanics.</p>
+                <span class="tag">AI Logic & Variables</span>
+            </div>
+            <div class="game-card">
+                <h3>Elden Ring</h3>
+                <p>Understand how pointers and memory management calculate hitboxes, stamina drain, and I-frames.</p>
+                <span class="tag">Pointers & Memory</span>
+            </div>
+            <div class="game-card">
+                <h3>Detroit: Become Human</h3>
+                <p>Master complex logic flows by building interactive decision trees and narrative branches in C.</p>
+                <span class="tag">Decision Trees</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="code-proof">
+        <h2>From Gameplay to Code</h2>
+        <p style="color: var(--text-muted); margin-bottom: 30px;">See how a simple health bar translates into C.</p>
+        <div class="code-box">
+            <span class="comment">// Resident Evil: Leon's Health Data</span><br><br>
+            <span style="color: #60a5fa;">int</span> player_health = <span style="color: #fbbf24;">100</span>;<br>
+            <span style="color: #60a5fa;">bool</span> is_infected = <span style="color: #fbbf24;">false</span>;
+        </div>
+    </section>
+
+    <footer>
+        <h3>Want the Ultimate Cheat Sheet?</h3>
+        <p>Get our free PDF: "C Programming Starter Guide (Gamer Edition)"</p>
+        <form class="email-form" onsubmit="event.preventDefault(); alert('Ready to connect to your email service!');">
+            <input type="email" placeholder="Enter your email address..." required>
+            <button type="submit">Send Me The Guide</button>
+        </form>
+    </footer>
+
+</body>
+</html>
