@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include <string.h>
+
+// 1. Define fixed categories using Enums
+enum HouseName { STARK, LANNISTER, TARGARYEN, BARATHEON };
+
+// 2. Define the Character details
+struct Character {
+    char name[30];
+    int age;
+    int isAlive; // 1 for Alive, 0 for Dead
+    int powerLevel; // 1-100
+};
+
+// 3. The "Massive" Nested Struct: A House contains Characters
+struct GreatHouse {
+    enum HouseName family;
+    char sigil[20];
+    char words[50];
+    struct Character leader;
+    struct Character heir;
+    int armySize;
+};
+
+void checkHouseStatus(struct GreatHouse h) {
+    printf("\n--- Checking House Status: %s ---\n", h.sigil);
+    printf("Words: \"%s\"\n", h.words);
+    
+    if (h.leader.isAlive == 0 && h.heir.isAlive == 0) {
+        printf("CRITICAL: House has fallen. The line is broken.\n");
+    } else if (h.leader.isAlive == 0) {
+        printf("The Lord is dead. Long live %s!\n", h.heir.name);
+    } else {
+        printf("The Iron Throne trembles. %s leads %d men.\n", h.leader.name, h.armySize);
+    }
+}
+
+int main() {
+    // 4. Initializing House Stark (Nested Data)
+    struct GreatHouse houseStark = {
+        STARK, 
+        "Direwolf", 
+        "Winter is Coming",
+        {"Eddard Stark", 45, 0, 80}, // Leader (isAlive = 0)
+        {"Robb Stark", 17, 1, 75},   // Heir
+        20000
+    };
+
+    // 5. Initializing House Lannister
+    struct GreatHouse houseLannister = {
+        LANNISTER,
+        "Lion",
+        "Hear Me Roar",
+        {"Tywin Lannister", 60, 1, 95},
+        {"Jaime Lannister", 34, 1, 90},
+        60000
+    };
+
+    // --- EXECUTE THE SIMULATION ---
+    checkHouseStatus(houseStark);
+    checkHouseStatus(houseLannister);
+
+    // 6. Logic: The "Red Wedding" Event
+    printf("\n[EVENT]: The Red Wedding occurs...\n");
+    houseStark.heir.isAlive = 0; // Robb Stark falls
+    houseStark.armySize = 0;     // Army destroyed
+
+    checkHouseStatus(houseStark);
+
+    return 0;
+}
