@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 8: The Vampire Diaries | Hybrid Logic</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    
+    <style>
+        :root {
+            --tvd-purple: #2e1065;
+            --tvd-red: #991b1b;
+            --tvd-silver: #cbd5e1;
+        }
+        body {
+            background-color: #020617;
+            color: var(--tvd-silver);
+            font-family: 'Garamond', serif;
+            padding: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid var(--tvd-red);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        h1 { color: var(--tvd-red); font-style: italic; letter-spacing: 2px; }
+        .info-card {
+            background: #1e1b4b;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--tvd-red);
+            margin-bottom: 25px;
+        }
+        .btn-home {
+            display: inline-block;
+            margin-top: 30px;
+            color: var(--tvd-red);
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid var(--tvd-red);
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Lesson 8: Supernatural Identity</h1>
+        <p>Using <b>Boolean Logic</b> and <b>Complex Structs</b> in Mystic Falls</p>
+    </div>
+
+    <div class="info-card">
+        <h3>The Concept: Identity Logic</h3>
+        <p>In TVD, a character's "Species" can change. Elena starts as Human, then becomes a Vampire. Klaus is a Hybrid. In C, we use <b>Integers as Booleans</b> (0 or 1) to track these permanent changes.</p>
+    </div>
+
+    <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+struct Supernatural {
+    char name[30];
+    int isVampire;
+    int isWerewolf;
+    int isWitch;
+    int hasDaylightRing;
+    int age;
+};
+
+void checkSpecies(struct Supernatural s) {
+    printf("\n--- Analyzing: %s ---\n", s.name);
+    
+    if (s.isVampire && s.isWerewolf) {
+        printf("Identity: THE HYBRID. High danger level.\n");
+    } else if (s.isVampire) {
+        printf("Identity: VAMPIRE.\n");
+        if (!s.hasDaylightRing) {
+            printf("Warning: Stay out of the sun!\n");
+        }
+    } else if (s.isWitch) {
+        printf("Identity: BENNETT WITCH / SPELLCASTER.\n");
+    } else {
+        printf("Identity: HUMAN (or Doppelgänger).\n");
+    }
+}
+
+int main() {
+    // Initializing the Mystic Falls gang
+    struct Supernatural stefan = {"Stefan Salvatore", 1, 0, 0, 1, 171};
+    struct Supernatural klaus = {"Niklaus Mikaelson", 1, 1, 0, 1, 1000};
+    struct Supernatural elena = {"Elena Gilbert", 0, 0, 0, 0, 18};
+
+    checkSpecies(stefan);
+    checkSpecies(klaus);
+    checkSpecies(elena);
+
+    // Event: Elena turns!
+    printf("\n[PLOT TWIST]: Elena dies with vampire blood in her system...\n");
+    elena.isVampire = 1;
+    elena.hasDaylightRing = 1;
+    
+    checkSpecies(elena);
+
+    return 0;
+}
+    </code></pre>
+
+    <a href="index.html" class="btn-home">← Back to the Salvatore Boarding House</a>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+
+</body>
+</html>
