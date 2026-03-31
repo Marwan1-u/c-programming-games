@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | C Programming Games</title>
+    <style>
+        body { background: #020617; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .login-card { background: #1e293b; padding: 40px; border-radius: 15px; border: 1px solid #22d3ee; text-align: center; width: 300px; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: none; box-sizing: border-box; }
+        button { background: #22d3ee; color: black; border: none; width: 100%; padding: 10px; font-weight: bold; cursor: pointer; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <h2>Member Access</h2>
+        <p style="font-size: 0.8rem; color: #94a3b8;">Hint: The password is "resident"</p>
+        <input type="password" id="pass" placeholder="Enter Secret Key">
+        <button onclick="checkPass()">Login</button>
+        <p id="error" style="color: #ef4444; font-size: 0.8rem;"></p>
+    </div>
+
+    <script>
+        function checkPass() {
+            const p = document.getElementById('pass').value;
+            if(p === "resident") {
+                // Redirect to the games page after successful login
+                window.location.href = "index.html#start"; 
+            } else {
+                document.getElementById('error').innerText = "Access Denied. Invalid Key.";
+            }
+        }
+    </script>
+</body>
+</html>
