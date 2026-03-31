@@ -116,11 +116,16 @@
         }
 
         .card-grid {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
+    display: flex;
+    flex-direction: row;      /* Horizontal */
+    flex-wrap: wrap;          /* Wrap to next line on mobile */
+    justify-content: center;  /* Center the cards */
+    gap: 30px;
+    padding: 40px 5%;
+    max-width: 1200px;        /* Prevents cards from spreading too far */
+    margin: 0 auto;           /* Centers the grid container */
+}
+        
 
         .game-card {
             background-color: var(--card-bg);
@@ -265,11 +270,13 @@
         </div>
             </a>
                 
-            <div class="game-card">
-                <h3>Elden Ring</h3>
-                <p>Understand how pointers and memory management calculate hitboxes, stamina drain, and I-frames.</p>
-                <span class="tag">Pointers & Memory</span>
-            </div>
+            <a href="lesson4.html" style="text-decoration: none; color: inherit;">
+    <div class="game-card" style="border-top: 4px solid #fbbf24; background: var(--card-bg); padding: 20px; border-radius: 10px; transition: 0.3s;">
+        <h3 style="color: #fbbf24;">Elden Ring</h3>
+        <p>Master <strong>Pointers & Memory</strong>. Learn how the game tracks your location in the Lands Between.</p>
+        <span class="tag" style="background: #451a03; color: #fbbf24; padding: 5px; border-radius: 4px;">Level 4: Advanced</span>
+    </div>
+</a>
                 
             <a href="lesson2.html" style="text-decoration: none; color: inherit;">
         <div class="game-card" style="border-top-color: var(--neon-orange);">
@@ -293,10 +300,10 @@
     <footer>
         <h3>Want the Ultimate Cheat Sheet?</h3>
         <p>Get our free PDF: "C Programming Starter Guide (Gamer Edition)"</p>
-        <form class="email-form" onsubmit="event.preventDefault(); alert('Ready to connect to your email service!');">
-            <input type="email" placeholder="Enter your email address..." required>
-            <button type="submit">Send Me The Guide</button>
-        </form>
+        <form class="email-form" onsubmit="event.preventDefault(); alert('🎮 Level Up! Your Free Guide is being sent to your inbox.'); this.reset();">
+    <input type="email" placeholder="Enter your email address..." required style="padding: 10px; border-radius: 5px; border: 1px solid #333; background: #111; color: white; width: 250px;">
+    <button type="submit" style="background: var(--neon-cyan); color: black; border: none; padding: 10px 20px; font-weight: bold; cursor: pointer; border-radius: 5px;">Send Me The Guide</button>
+</form>
     </footer>
 
 </body>
