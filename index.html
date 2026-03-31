@@ -262,7 +262,16 @@
       <li><a href="login.html" class="nav-btn">Login</a></li>     
         </div>
     </nav>
+    
+    <ul class="nav-links">
+    <li><a href="#start">Learn C</a></li>
+    <li><a href="#start">Games</a></li>
+    <li><a href="practice.html">Practice</a></li>
+    
+    <li id="auth-container"></li>
+</ul>
 
+    
     <section class="hero">
         <h1>Learn C Programming <br>Through <span>Your Favorite Games</span></h1>
         <p>No boring math. No dry theory. Learn how the systems behind Resident Evil, Elden Ring, and Detroit: Become Human are actually built in code.</p>
@@ -335,6 +344,32 @@
     <button type="submit" style="background: var(--neon-cyan); color: black; border: none; padding: 10px 20px; font-weight: bold; cursor: pointer; border-radius: 5px;">Send Me The Guide</button>
 </form>
     </footer>
+                
+<script
+  async
+  crossorigin="anonymous"
+  data-clerk-publishable-key="pk_test_aGVyb2ljLW1hbW1hbC02Mi5jbGVyay5hY2NvdW50cy5kZXYk"
+  src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js"
+></script>
 
+<script>
+  window.addEventListener("load", async function () {
+    // Start Clerk
+    await window.Clerk.load();
+
+    const authContainer = document.getElementById("auth-container");
+
+    if (window.Clerk.user) {
+      // SUCCESS! The user is logged in. 
+      // This creates a circular profile picture button they can click to manage their account.
+      window.Clerk.mountUserButton(authContainer);
+    } else {
+      // GUEST! The user is not logged in.
+      // This creates a "Sign In" button that opens Clerk's beautiful login popup.
+      window.Clerk.mountSignInButton(authContainer);
+    }
+  });
+</script>
+                
 </body>
 </html>
