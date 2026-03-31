@@ -116,15 +116,25 @@
         }
 
         .card-grid {
-    display: flex;
-    flex-direction: row;      /* Horizontal */
-    flex-wrap: wrap;          /* Wrap to next line on mobile */
-    justify-content: center;  /* Center the cards */
-    gap: 30px;
-    padding: 40px 5%;
-    max-width: 1200px;        /* Prevents cards from spreading too far */
-    margin: 0 auto;           /* Centers the grid container */
+    display: flex !important;       /* Forces horizontal */
+    flex-direction: row !important;  /* Forces horizontal */
+    flex-wrap: wrap !important;     /* Allows wrapping only when out of space */
+    justify-content: center;        /* Centers them */
+    gap: 20px;
+    
+    max-width: 1200px;              /* Keeps it neat on big screens */
+    margin: 0 auto;                 /* Centers the whole grid on the page */
+    width: 95%;                     /* Ensures it doesn't touch the screen edges */
 }
+
+.game-card {
+    /* This is the secret: 'flex: 1' lets them share space */
+    flex: 1 1 300px; 
+    max-width: 350px;               /* Stops them from getting TOO wide */
+    min-width: 280px;               /* Stops them from getting TOO skinny */
+    box-sizing: border-box;         /* Ensures padding doesn't add to width */
+}
+
         
 
         .game-card {
