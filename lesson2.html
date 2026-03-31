@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 2: Decision Trees | Learn C</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --neon-blue: #22d3ee;
+            --neon-orange: #f97316;
+            --text: #f8fafc;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding-bottom: 50px;
+        }
+
+        nav {
+            background: rgba(0,0,0,0.8);
+            padding: 1rem 5%;
+            border-bottom: 1px solid #333;
+        }
+
+        .back-link {
+            color: var(--neon-blue);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1 { color: var(--neon-orange); font-size: 2.5rem; }
+        h2 { color: var(--neon-blue); border-bottom: 1px solid #333; padding-bottom: 10px; }
+
+        .mission-box {
+            background: var(--card);
+            border-left: 5px solid var(--neon-blue);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .code-window {
+            background: #000;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            border: 1px solid #333;
+            overflow-x: auto;
+        }
+
+        .keyword { color: #f472b6; } /* Pink for if/else */
+        .variable { color: #60a5fa; } /* Blue for variables */
+        .value { color: #fbbf24; }    /* Yellow for numbers */
+        .comment { color: #6b7280; font-style: italic; }
+
+        .interactive-zone {
+            background: #111;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px dashed var(--neon-blue);
+            margin-top: 40px;
+        }
+
+        .choice-btn {
+            background: transparent;
+            color: var(--text);
+            border: 2px solid var(--neon-blue);
+            padding: 12px 25px;
+            margin: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .choice-btn:hover {
+            background: var(--neon-blue);
+            color: #000;
+        }
+
+        #output-screen {
+            margin-top: 20px;
+            height: 60px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="back-link">← Return to Main Menu</a>
+    </nav>
+
+    <div class="container">
+        <h1>Level 2: The Decision Tree</h1>
+        <p>In <em>Detroit: Become Human</em>, every choice matters. But how does the computer know which ending to show you? It uses <strong>Control Flow</strong>.</p>
+
+        <div class="mission-box">
+            <h3>🤖 Mission: Interrogation</h3>
+            <p>You are Connor. You have found a hidden diary. In C code, we check if the player has the item using an <strong>if statement</strong>. If the condition is true, one thing happens. If not (<strong>else</strong>), something else happens.</p>
+        </div>
+
+        <h2>The Code Logic</h2>
+        <div class="code-window">
+            <span class="comment">// 1 = Found Clue, 0 = Missed Clue</span><br>
+            <span class="keyword">int</span> <span class="variable">found_diary</span> = <span class="value">1</span>;<br><br>
+
+            <span class="keyword">if</span> (<span class="variable">found_diary</span> == <span class="value">1</span>) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;printf(<span style="color: #4ade80;">"Connor: I found your diary. You're lying."</span>);<br>
+            } <span class="keyword">else</span> {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;printf(<span style="color: #4ade80;">"Connor: I have no evidence... yet."</span>);<br>
+            }
+        </div>
+
+        
+
+        <h2>🎮 Live Simulator</h2>
+        <p>In C, <code>==</code> means "Is this equal to?". Click a button to execute the code:</p>
+
+        <div class="interactive-zone">
+            <button class="choice-btn" onclick="playLogic(1)">Found Diary (Value: 1)</button>
+            <button class="choice-btn" onclick="playLogic(0)">Missed Diary (Value: 0)</button>
+            
+            <div id="output-screen">Waiting for input...</div>
+        </div>
+
+        <h3 style="margin-top: 50px;">Key Takeaway</h3>
+        <ul>
+            <li><strong>IF:</strong> The "Gatekeeper." Only runs code if the condition is met.</li>
+            <li><strong>ELSE:</strong> The "Safety Net." Runs code if the condition fails.</li>
+            <li><strong>BRACES { }:</strong> These hold the "consequences" of the choice.</li>
+        </ul>
+    </div>
+
+    <script>
+        function playLogic(status) {
+            const screen = document.getElementById('output-screen');
+            if(status === 1) {
+                screen.innerHTML = "<span style='color: #4ade80;'>[IF BLOCK EXECUTED]</span><br>Connor pressure level increased. Truth revealed.";
+            } else {
+                screen.innerHTML = "<span style='color: #f97316;'>[ELSE BLOCK EXECUTED]</span><br>Suspect stays silent. The trail goes cold.";
+            }
+        }
+    </script>
+
+</body>
+</html>
