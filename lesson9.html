@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 9: Crimson Engine Architecture</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    
+    <style>
+        :root {
+            --crimson: #991b1b;
+            --slate: #0f172a;
+            --gold: #fbbf24;
+        }
+        body {
+            background-color: var(--slate);
+            color: #f1f5f9;
+            font-family: 'Inter', sans-serif;
+            padding: 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .header-box {
+            border-left: 10px solid var(--crimson);
+            padding: 20px;
+            background: #1e293b;
+            margin-bottom: 40px;
+        }
+        h1 { color: var(--crimson); text-transform: uppercase; margin: 0; }
+        .engine-note {
+            background: #881337;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        pre { border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-box">
+        <h1>Lesson 9: The AAA Game Loop</h1>
+        <p>Merging Physics, Input, and Combat into one Infinite Loop.</p>
+    </div>
+
+    <div class="engine-note">
+        ⚠️ Warning: This code uses C++ Logic. Ensure your compiler is set to C++ mode!
+    </div>
+
+    <pre><code class="language-cpp">
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+// 1. DATA STRUCTURE: Managing character states
+struct GameCharacter {
+    std::string name;
+    float health;
+    float stamina;
+    bool bIsAttacking;
+};
+
+// 2. COMBAT ENGINE: The logic that calculates hits
+void ProcessCombat(GameCharacter &player, GameCharacter &enemy) {
+    if (player.bIsAttacking && player.stamina >= 20.0f) {
+        std::cout << "⚔️ Attack Triggered! " << player.name << " swings!" << std::endl;
+        
+        float damage = 45.0f;
+        enemy.health -= damage;
+        player.stamina -= 20.0f; // Drain resources
+
+        std::cout << "💥 SUCCESS: " << enemy.name << " Health is now " << enemy.health << std::endl;
+        player.bIsAttacking = false; // Reset attack state
+    }
+}
+
+// 3. THE INFINITE LOOP: The heartbeat of Crimson Desert
+int main() {
+    GameCharacter hero = {"Macduff", 100.0f, 100.0f, false};
+    GameCharacter boss = {"The Serpent", 500.0f, 100.0f, false};
+
+    bool bGameRunning = true;
+    int frameCount = 0;
+
+    while (bGameRunning) {
+        frameCount++;
+
+        // SIMULATED INPUT: Attack on Frame 5
+        if (frameCount == 5) hero.bIsAttacking = true;
+
+        // PHYSICS & COMBAT UPDATE
+        ProcessCombat(hero, boss);
+
+        // STAMINA REGEN LOGIC
+        if (frameCount % 10 == 0 && hero.stamina < 100) {
+            hero.stamina += 10.0f;
+            std::cout << "[SYSTEM] Regenerating Stamina..." << std::endl;
+        }
+
+        // END CONDITION
+        if (boss.health <= 0 || frameCount > 50) {
+            std::cout << "--- Simulation Complete ---" << std::endl;
+            bGameRunning = false;
+        }
+    }
+    return 0;
+}
+    </code></pre>
+
+    <a href="index.html" class="back-link">← Return to Dashboard</a>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+
+</body>
+</html>
