@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Lesson 1: Variables | Code/Games</title>
-    <link rel="stylesheet" href="style.css"> <style>
-        /* Specific styles for the lesson content */
-        .content-area { max-width: 800px; margin: 50px auto; padding: 20px; }
-        .code-block { background: #1e1e1e; color: #4ade80; padding: 20px; border-radius: 8px; font-family: monospace; margin: 20px 0; }
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    
+    <style>
+        .content-area { max-width: 900px; margin: 50px auto; padding: 20px; }
         .game-analogy { background: #2d3748; border-left: 5px solid #f97316; padding: 20px; margin: 20px 0; }
         .btn-back { color: #22d3ee; text-decoration: none; font-weight: bold; }
+        /* Making the code area bigger for the "Huge" code */
+        pre { border-radius: 8px; margin: 20px 0; font-size: 1.1rem; }
     </style>
 </head>
 <body>
@@ -17,23 +20,53 @@
     </nav>
 
     <div class="content-area">
-        <h1>Lesson 1: Variables (The Inventory System)</h1>
-        <p>In C, a <strong>Variable</strong> is a container for data. Think of Leon's attaché case in Resident Evil 4...</p>
-
+        <h1>Lesson 1: The Massive Inventory System</h1>
+        
         <div class="game-analogy">
-            <h3>🧟 Resident Evil Logic</h3>
-            <p>Every time Leon picks up herbs or ammo, the game updates a variable. If <code>health = 100</code> and a zombie bites you, the code runs <code>health = health - 20</code>.</p>
+            <h3>🧟 Resident Evil Logic: The Attaché Case</h3>
+            <p>Every item in Leon's case is a <b>Variable</b>. In C, we have to tell the computer exactly what "Type" of item it is before we store it.</p>
         </div>
 
-        <h3>The Code Example:</h3>
-        <div class="code-block">
-            int health = 100; <span style="color: #6b7280;">// Whole number</span><br>
-            float knife_hp = 85.5; <span style="color: #6b7280;">// Decimal number</span><br>
-            char rank = 'A'; <span style="color: #6b7280;">// Single letter</span>
-        </div>
+        <h3>The Full Inventory Code:</h3>
+        <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    // 1. INTEGER (Whole Numbers) - Ammo and Health
+    int handgun_ammo = 15;
+    int green_herbs = 2;
+    int pesetas = 5500;
+
+    // 2. FLOAT (Decimal Numbers) - Knife Durability
+    float knife_condition = 92.5f;
+    float body_armor = 100.0f;
+
+    // 3. CHAR (Single Letters) - Performance Rank
+    char mission_rank = 'S';
+
+    // --- GAME LOGIC SIMULATION ---
+    printf("--- LEON'S STATUS ---\n");
+    printf("Ammo: %d | Rank: %c\n", handgun_ammo, mission_rank);
+    printf("Wallet: %d Pesetas\n", pesetas);
+    printf("Knife: %.1f%% condition\n", knife_condition);
+
+    // Logic: A Zombie attacks!
+    printf("\n[ALERT]: A Ganado grabbed you!\n");
+    body_armor = body_armor - 15.5; // Decimal math
+    handgun_ammo = handgun_ammo - 3; // Integer math
+
+    printf("Updated Armor: %.1f%%\n", body_armor);
+    printf("Remaining Ammo: %d\n", handgun_ammo);
+
+    return 0;
+}
+        </code></pre>
 
         <h3>Try This:</h3>
-        <p>What variable type would you use for "Player Gold"? (Hint: It's a whole number!)</p>
+        <p>In the code above, we subtracted 15.5 from <code>body_armor</code>. Why did we use a <b>float</b> instead of an <b>int</b> for that? (Hint: Check the decimals!)</p>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
 </body>
 </html>
